@@ -7,14 +7,14 @@
       "config": { "distDir": "dist" }
     },
     {
-      "src": "phase3_backend/main.py",
+      "src": "api/index.py",
       "use": "@vercel/python"
     }
   ],
   "rewrites": [
     {
       "source": "/api/v1/(.*)",
-      "destination": "phase3_backend/main.py"
+      "destination": "/api/index.py"
     },
     {
       "source": "/(.*)",
