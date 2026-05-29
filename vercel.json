@@ -1,0 +1,27 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "phase4_frontend/package.json",
+      "use": "@vercel/static-build",
+      "config": { "distDir": "dist" }
+    },
+    {
+      "src": "phase3_backend/main.py",
+      "use": "@vercel/python"
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/api/v1/(.*)",
+      "destination": "phase3_backend/main.py"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/phase4_frontend/$1"
+    }
+  ],
+  "env": {
+    "PYTHON_VERSION": "3.10"
+  }
+}
