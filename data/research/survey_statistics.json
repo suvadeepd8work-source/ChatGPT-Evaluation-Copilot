@@ -1,0 +1,40 @@
+{
+  "total_responses": 33,
+  "trust_segmentation": {
+    "AI_should_never_be_fully_trusted": 11,
+    "AI_is_useful_but_needs_verification": 16,
+    "AI_is_mostly_reliable": 4,
+    "unsure_how_much_to_trust": 2
+  },
+  "verification_frequency": {
+    "Always": 10,
+    "Often": 11,
+    "Sometimes": 9,
+    "Rarely": 2,
+    "Never": 1
+  },
+  "blind_trust_tendency": {
+    "Frequently": 5,
+    "Sometimes": 11,
+    "Rarely": 6,
+    "Never": 11
+  },
+  "high_risk_scenarios": {
+    "High_stakes_decisions": 16,
+    "Academic_submissions": 12,
+    "Research_facts": 21,
+    "Career_related_work": 15,
+    "Financial_legal_topics": 12,
+    "Coding_debugging": 4
+  },
+  "requested_features": {
+    "Fact_checking_support": 14,
+    "Source_citations": 8,
+    "Confidence_indicator": 7,
+    "Human_review_suggestions": 11,
+    "Alternative_viewpoint": 10,
+    "Uncertainty_warnings": 6,
+    "Reliability_scores": 6,
+    "Explanation_of_reasoning": 5
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "trust_distribution": [
+    { "label": "Never Fully Trusted", "value": 33.3 },
+    { "label": "Useful but Needs Verification", "value": 48.5 },
+    { "label": "Mostly Reliable", "value": 12.1 },
+    { "label": "Unsure", "value": 6.1 }
+  ],
+  "verification_habits": [
+    { "habit": "Always/Often", "percentage": 63.6 },
+    { "habit": "Sometimes/Rarely", "percentage": 33.3 },
+    { "habit": "Never", "percentage": 3.1 }
+  ],
+  "blind_trust_risk": [
+    { "category": "High (Frequently/Sometimes)", "value": 48.5 },
+    { "category": "Low (Rarely/Never)", "value": 51.5 }
+  ],
+  "top_requested_features": [
+    { "feature": "Fact-checking Support", "count": 14 },
+    { "feature": "Human Review Suggestions", "count": 11 },
+    { "feature": "Alternative Viewpoints", "count": 10 },
+    { "feature": "Source Citations", "count": 8 },
+    { "feature": "Confidence Indicators", "count": 7 }
+  ]
+}
