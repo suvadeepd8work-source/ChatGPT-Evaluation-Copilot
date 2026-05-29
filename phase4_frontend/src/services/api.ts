@@ -1,6 +1,6 @@
 import { EvaluationData } from '../store/evaluationStore';
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || '/api/v1';
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://chatgpt-evaluation-backend.onrender.com/api/v1';
 
 export const apiService = {
   async processEvaluation(prompt: string, sessionId?: string, userId?: string): Promise<EvaluationData> {

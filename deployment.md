@@ -1,49 +1,56 @@
 # Deployment Guide: ChatGPT Evaluation Mode
 
-This document outlines the steps required to deploy the application in a production environment using **Vercel**.
+This document outlines the steps required to deploy the application in a production environment using **Vercel** (Frontend) and **Render** (Backend).
 
 ## 1. Prerequisites
 - A GitHub repository with the project code.
-- A Vercel account.
+- A [Vercel](https://vercel.com/) account for the frontend.
+- A [Render](https://render.com/) account for the backend.
 - A [Groq API Key](https://console.groq.com/).
 
-## 2. Vercel Configuration
-The project is configured for Vercel using the [vercel.json](vercel.json) file in the root directory. This file handles:
-- Routing for both the Frontend (React/Vite) and Backend (FastAPI).
-- Python runtime configuration for the API.
-- SPA routing to ensure `index.html` is served for all frontend routes.
+---
 
-## 3. Environment Variables
-You must configure the following environment variables in the Vercel Dashboard (**Settings > Environment Variables**):
+## 2. Backend Deployment (Render)
 
-### **Backend Variables**
-| Variable | Description | Example |
-| :--- | :--- | :--- |
-| `GROQ_API_KEY` | Your Groq API Key | `gsk_...` |
-| `DATABASE_URL` | SQLite path or PostgreSQL URL | `sqlite:///./storage/prod.db` |
-| `ENVIRONMENT` | Deployment environment | `production` |
-| `FRONTEND_URL` | The production URL of your frontend | `https://your-app.vercel.app` |
+### **Step 1: Create a Blueprint Instance**
+1. Log in to Render.
+2. Click **New > Blueprint**.
+3. Connect your GitHub repository.
+4. Render will detect the `render.yaml` file and prepare the service.
 
-### **Frontend Variables**
-| Variable | Description | Example |
-| :--- | :--- | :--- |
-| `VITE_API_URL` | The base URL for API calls | `/api/v1` (Default) |
+### **Step 2: Environment Variables**
+Configure the following in the Render Dashboard (or via the Blueprint prompt):
+- `GROQ_API_KEY`: Your production API key.
+- `FRONTEND_URL`: Your Vercel frontend URL (e.g., `https://chat-gpt-evaluation-copilot.vercel.app`).
+- `ENVIRONMENT`: `production`.
 
-## 4. Deployment Steps
-1. **Import Project**: In Vercel, click "New Project" and import your GitHub repository.
-2. **Configure Root**: Ensure the "Root Directory" is set to the repository root.
-3. **Build Settings**: 
-   - Build Command: `npm run build` (inside `phase4_frontend`)
-   - Output Directory: `phase4_frontend/dist`
-4. **Environment Variables**: Add the variables listed in section 3.
-5. **Deploy**: Click "Deploy".
+### **Step 3: Persistence**
+The `render.yaml` includes a **Disk** definition to ensure your SQLite database (`evaluation.db`) persists across restarts.
 
-## 5. Performance & Monitoring
-- **Error Logging**: The backend uses Python's standard `logging` module. In Vercel, these logs are accessible via the **Functions** tab.
-- **Frontend Performance**: Vite handles production minification and code splitting automatically.
-- **API Optimization**: The `vercel.json` configuration uses serverless functions for the FastAPI backend, ensuring scalability.
+---
 
-## 6. Security
-- **CORS**: Production CORS is restricted to the `FRONTEND_URL` in [main.py](phase3_backend/main.py).
-- **API Docs**: Swagger UI (`/api/docs`) is disabled in production to prevent exposure of API schemas.
-- **Environment Handling**: Never commit `.env` files. Always use the Vercel Dashboard for secret management.
+## 3. Frontend Deployment (Vercel)
+
+### **Step 1: Configure Vercel**
+1. Import your GitHub repository into Vercel.
+2. **Root Directory**: Select `phase4_frontend`.
+3. **Framework Preset**: Vite.
+4. **Build Command**: `npm run build`.
+5. **Output Directory**: `dist`.
+
+### **Step 2: Environment Variables**
+Add the following in **Settings > Environment Variables**:
+- `VITE_API_URL`: Your Render backend URL (e.g., `https://chatgpt-evaluation-backend.onrender.com/api/v1`).
+
+---
+
+## 4. Scheduler (GitHub Actions)
+The scheduler is configured in `.github/workflows/scheduler.yml`. It runs daily at 10 AM UTC.
+- **Secret Required**: Add `DATABASE_URL` or `BACKEND_URL` to your GitHub Repository Secrets if the scheduler needs to trigger remote updates.
+
+---
+
+## 5. Verification Steps
+1. **Backend Health**: Visit `https://your-backend.onrender.com/health`.
+2. **CORS Check**: Ensure the frontend can successfully call the backend without console errors.
+3. **Persistence**: Create a session in the app, restart the Render service, and verify the session still exists.

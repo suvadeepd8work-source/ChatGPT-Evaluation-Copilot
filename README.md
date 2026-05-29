@@ -85,7 +85,11 @@ npm run dev
 The application will be available at `http://localhost:5173`.
 
 ## 🚀 Deployment
-The application is configured for deployment on **Vercel**. For detailed production setup and environment configuration, see [deployment.md](deployment.md).
+The application uses a **Hybrid Deployment** strategy:
+- **Frontend**: Deployed on [Vercel](https://vercel.com).
+- **Backend**: Deployed on [Render](https://render.com).
+
+For detailed production setup and environment configuration, see [deployment.md](deployment.md).
 
 ## 🔄 Development Workflow
 1. **Intent Classification**: Every prompt is analyzed for stake levels (Low to Critical).

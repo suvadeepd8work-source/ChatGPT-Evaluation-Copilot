@@ -111,12 +111,11 @@ All AI interactions are structured to include:
     - **Pattern Sync**: Updates bias and hallucination tracking markers.
 - **Automation**: Triggered daily via GitHub Actions at 10 AM UTC.
 
-### **Deployment Layer (Production)**
-- **Platform**: Vercel (Frontend & Backend).
-- **Frontend**: React + Vite (Static Build).
-- **Backend**: FastAPI (Python Serverless Functions).
-- **Configuration**: [vercel.json](vercel.json) manages the unified routing and build pipeline.
-- **Security**: Production-grade CORS, environment-based API documentation toggling, and secure secret management via Vercel Dashboard.
+### **Deployment Architecture (Hybrid)**
+- **Frontend**: Hosted on **Vercel** for optimal global delivery of the React/Tailwind UI.
+- **Backend**: Hosted on **Render** as a persistent web service (FastAPI/Gunicorn). This resolves timeout issues with long-running LLM requests (Groq).
+- **Persistence**: Render **Persistent Disks** used for the SQLite database.
+- **Configuration**: `render.yaml` defines the infrastructure-as-code for the backend.
 
 ---
 
