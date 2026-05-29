@@ -23,17 +23,17 @@ class Settings(BaseSettings):
     GOOGLE_SEARCH_CX: Optional[str] = None
     
     # Database
-    DATABASE_URL: str = "sqlite:///./storage/evaluation.db"
+    DATABASE_URL: str = os.getenv("DATABASE_URL", "sqlite:///./storage/evaluation.db")
     
     # Connection Settings
-    BACKEND_URL: str = "http://localhost:8000"
-    FRONTEND_URL: str = "http://localhost:3000"
-    ENVIRONMENT: str = "development"
+    BACKEND_URL: str = os.getenv("BACKEND_URL", "http://localhost:8000")
+    FRONTEND_URL: str = os.getenv("FRONTEND_URL", "http://localhost:3000")
+    ENVIRONMENT: str = os.getenv("ENVIRONMENT", "development")
     
     # Application Settings
-    APP_ENV: str = "development"
-    SECRET_KEY: str = "SECRET"
-    PORT: int = 8000
+    APP_ENV: str = os.getenv("APP_ENV", "development")
+    SECRET_KEY: str = os.getenv("SECRET_KEY", "SECRET")
+    PORT: int = int(os.getenv("PORT", 8000))
     
     # Feature Flags
     ENABLE_SOURCE_AUDITOR: bool = True
