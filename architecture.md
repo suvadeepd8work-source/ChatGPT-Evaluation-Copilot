@@ -111,9 +111,16 @@ All AI interactions are structured to include:
     - **Pattern Sync**: Updates bias and hallucination tracking markers.
 - **Automation**: Triggered daily via GitHub Actions at 10 AM UTC.
 
+### **Deployment Layer (Production)**
+- **Platform**: Vercel (Frontend & Backend).
+- **Frontend**: React + Vite (Static Build).
+- **Backend**: FastAPI (Python Serverless Functions).
+- **Configuration**: [vercel.json](vercel.json) manages the unified routing and build pipeline.
+- **Security**: Production-grade CORS, environment-based API documentation toggling, and secure secret management via Vercel Dashboard.
+
 ---
 
-## 5. Phase 5 Implementation Details
+## 4. Phase 5 Implementation Details
 - `certification_service.py`: Logic for generating "Certified Output" summaries.
 - `feedback_service.py`: Handles hallucination reporting and user feedback loops.
 - `history_tracker.py`: Tracks temporal trends in verification and confidence calibration.

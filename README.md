@@ -84,6 +84,9 @@ npm run dev
 ```
 The application will be available at `http://localhost:5173`.
 
+## 🚀 Deployment
+The application is configured for deployment on **Vercel**. For detailed production setup and environment configuration, see [deployment.md](deployment.md).
+
 ## 🔄 Development Workflow
 1. **Intent Classification**: Every prompt is analyzed for stake levels (Low to Critical).
 2. **AI Orchestration**: The backend calls Groq (Llama 3.3 70B) with specialized system prompts.
